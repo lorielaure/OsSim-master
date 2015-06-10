@@ -2,10 +2,10 @@ package edu.upc.fib.ossim.mcq.model;
 
 public class Professeur {
 	
-	private int id_Prodesseur;
-	private String Login_Professeur;
-	private String motDePasse_Professeur;
-	private String nomPrenom_Professeur;
+	private int idProdesseur;
+	private String LoginProfesseur;
+	private String motDePasseProfesseur;
+	private String nomPrenomProfesseur;
 	
 	
 	public Professeur() {
@@ -13,39 +13,46 @@ public class Professeur {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Professeur(int id_Prodesseur, String login_Professeur,
+	public Professeur(String login_Professeur,
 			String motDePasse_Professeur, String nomPrenom_Professeur) {
 		super();
-		this.id_Prodesseur = id_Prodesseur;
-		Login_Professeur = login_Professeur;
-		this.motDePasse_Professeur = motDePasse_Professeur;
-		this.nomPrenom_Professeur = nomPrenom_Professeur;
+		LoginProfesseur = login_Professeur;
+		this.motDePasseProfesseur = motDePasse_Professeur;
+		this.nomPrenomProfesseur = nomPrenom_Professeur;
 	}
 
-	public int getId_Prodesseur() {
-		return id_Prodesseur;
+	public int getIdProdesseur() {
+		return idProdesseur;
 	}
-	public void setId_Prodesseur(int id_Prodesseur) {
-		this.id_Prodesseur = id_Prodesseur;
+
+	public void setIdProdesseur(int idProdesseur) {
+		this.idProdesseur = idProdesseur;
 	}
-	public String getLogin_Professeur() {
-		return Login_Professeur;
+
+	public String getLoginProfesseur() {
+		return LoginProfesseur;
 	}
-	public void setLogin_Professeur(String login_Professeur) {
-		Login_Professeur = login_Professeur;
+
+	public void setLoginProfesseur(String loginProfesseur) {
+		LoginProfesseur = loginProfesseur;
 	}
-	public String getMotDePasse_Professeur() {
-		return motDePasse_Professeur;
+
+	public String getMotDePasseProfesseur() {
+		return motDePasseProfesseur;
 	}
-	public void setMotDePasse_Professeur(String motDePasse_Professeur) {
-		this.motDePasse_Professeur = motDePasse_Professeur;
+
+	public void setMotDePasseProfesseur(String motDePasseProfesseur) {
+		this.motDePasseProfesseur = motDePasseProfesseur;
 	}
-	public String getNomPrenom_Professeur() {
-		return nomPrenom_Professeur;
+
+	public String getNomPrenomProfesseur() {
+		return nomPrenomProfesseur;
 	}
-	public void setNomPrenom_Professeur(String nomPrenom_Professeur) {
-		this.nomPrenom_Professeur = nomPrenom_Professeur;
+
+	public void setNomPrenomProfesseur(String nomPrenomProfesseur) {
+		this.nomPrenomProfesseur = nomPrenomProfesseur;
 	}
+	
 	
 	
 

@@ -2,10 +2,10 @@ package edu.upc.fib.ossim.mcq.model;
 
 public class Etudiant {
 	
-	private int id_Etudiant;
+	private long idEtudiant;
 	private String login;
-	private String motDePasse_Etudiant;
-	private String nomPrenom_Etudiant;
+	private String motDePasseEtudiant;
+	private String nomPrenomEtudiant;
 	
 	
 	public Etudiant() {
@@ -13,39 +13,57 @@ public class Etudiant {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Etudiant(int id_Etudiant, String login, String motDePasse,
-			String nomPrenom_Etudiant) {
+	
+
+	
+
+	public Etudiant(String login, String motDePasseEtudiant,
+			String nomPrenomEtudiant) {
 		super();
-		this.id_Etudiant = id_Etudiant;
 		this.login = login;
-		this.motDePasse_Etudiant = motDePasse;
-		this.nomPrenom_Etudiant = nomPrenom_Etudiant;
+		this.motDePasseEtudiant = motDePasseEtudiant;
+		this.nomPrenomEtudiant = nomPrenomEtudiant;
 	}
 
-	public String getNomPrenom_Etudiant() {
-		return nomPrenom_Etudiant;
+
+	public long getIdEtudiant() {
+		return idEtudiant;
 	}
-	public void setNomPrenom_Etudiant(String nomPrenom_Etudiant) {
-		this.nomPrenom_Etudiant = nomPrenom_Etudiant;
+
+
+	public void setIdEtudiant(long idEtudiant) {
+		this.idEtudiant = idEtudiant;
 	}
-	public int getId_Etudiant() {
-		return id_Etudiant;
-	}
-	public void setId_Etudiant(int id_Etudiant) {
-		this.id_Etudiant = id_Etudiant;
-	}
+
+
+
+
+
 	public String getLogin() {
 		return login;
 	}
+
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	public String getMotDePasse() {
-		return motDePasse_Etudiant;
+
+	public String getMotDePasseEtudiant() {
+		return motDePasseEtudiant;
 	}
-	public void setMotDePasse(String motDePasse) {
-		this.motDePasse_Etudiant = motDePasse;
+
+	public void setMotDePasseEtudiant(String motDePasseEtudiant) {
+		this.motDePasseEtudiant = motDePasseEtudiant;
 	}
+
+	public String getNomPrenomEtudiant() {
+		return nomPrenomEtudiant;
+	}
+
+	public void setNomPrenomEtudiant(String nomPrenomEtudiant) {
+		this.nomPrenomEtudiant = nomPrenomEtudiant;
+	}
+
+	
 	
 	
 

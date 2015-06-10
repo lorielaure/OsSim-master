@@ -1091,7 +1091,7 @@ public class MemoryPresenter extends Presenter {
 				context.setPolicy(policy);
 				actionSpecific(actionCommand); // Updates management. Creates OS
 												// block
-
+				
 				break;
 			case 1: // Memory blocks
 				for (int i = 0; i < data.size(); i++) {
@@ -1103,6 +1103,7 @@ public class MemoryPresenter extends Presenter {
 																		// at
 																		// position
 																		// 1
+					System.out.println(block.get(0).get(1)+" action commande");
 					blockData.add(new Integer(block.get(1).get(1))); // size.
 																		// Value
 																		// at
@@ -1157,11 +1158,13 @@ public class MemoryPresenter extends Presenter {
 							Vector<Object> component = new Vector<Object>();
 							component.add(new Integer(program.get(k + j * 3)
 									.get(1))); // bid
+							
 							component.add(new Integer(program
 									.get(k + j * 3 + 1).get(1))); // size
 							component.add(new Boolean(program
 									.get(k + j * 3 + 2).get(1))); // load?
 							components.add(component);
+							
 						}
 						//System.out.println(getXMLData(0).get(0).get(0).get(1));
 						if (((String) (getXMLData(0).get(0).get(0).get(1)))
