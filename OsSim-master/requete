@@ -1,0 +1,50 @@
+getListQRByExo(IdExo):
+ iterator{
+  getInfoQR(IdQR)
+  getAnswersQR(IdQR)
+  getProcQR(idQR)
+ }
+ 
+getListQRByExo: (getInfo)
+
+	select Id_QR, mod_QR, blockOnStep, question, includeAnswers, difficulty, answerType
+	from QR
+	where QR.id_Exo=id_Exo;
+
+getAnswersQR:
+    select reponse, isAnwerCorrect
+    from QR_answers
+    where QR_answers.id_QR=id_QR;
+    
+getParamQRMem(idQR)
+
+	select management, memorySize, soSize, pageSize, policy
+	from QR_memoire
+	Where QR_memoire.id_QR=idQR;
+	
+getParamQRProc(idQR)   // il faut revoir la partie param pour le module Processus ( faire la meme chose que la partie mémoire )
+
+	select management, multiprogramming, preemptive, quantum, var, verrou
+	from ???
+	Where ???.id_QR=idQR;
+
+getProcQRProc(idQR)
+	
+	select Pid, Pname, submission, Periodic, Bursts, Color, Variables, Resources, Queue_id
+	from QR_Processus
+	where QR_Processus.id_QR=idQR;
+	
+getProcQRMem(idQR)
+
+	select Pid, Pname, size, memSize, duration, color, quantumOrders, quantum
+	from QR_Process_Mem
+	where QR_Process_Mem.id_QR=idQR;
+
+getBidByProc(id_Proc)
+
+	select bid, size, load
+	from Proc_Bid
+	where Proc_Bid.id_Proc=id_Proc;
+
+    
+    
