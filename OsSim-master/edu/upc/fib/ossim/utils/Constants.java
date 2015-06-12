@@ -28,5 +28,7 @@ public class Constants {
 	public static final String REQ_PROCESSUS_ARRIVING_BY_QR = "list.processus.arriving.by.qr";
 	public static final String REQ_PROCESSUS_MEMOIRY_BY_QR = "list.processus.memoire.by.qr";
 	public static final String REQ_BID_BY_PID = "list.bid.by.pid";
+	public static final String REQ_EXERCICE_PUBLIE = "list.exo.publie";
+	public static final String REQ_TEST_PUBLIE = "list.tests.publie";
 
 }
