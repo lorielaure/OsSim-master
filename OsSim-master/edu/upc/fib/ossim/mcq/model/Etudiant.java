@@ -14,12 +14,11 @@ public class Etudiant {
 	}
 	
 	
-
 	
 
 	public Etudiant(String login, String motDePasseEtudiant,
 			String nomPrenomEtudiant) {
-		super();
+		super();		
 		this.login = login;
 		this.motDePasseEtudiant = motDePasseEtudiant;
 		this.nomPrenomEtudiant = nomPrenomEtudiant;
@@ -34,11 +33,7 @@ public class Etudiant {
 	public void setIdEtudiant(long idEtudiant) {
 		this.idEtudiant = idEtudiant;
 	}
-
-
-
-
-
+	
 	public String getLogin() {
 		return login;
 	}
