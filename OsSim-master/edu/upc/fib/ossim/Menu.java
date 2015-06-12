@@ -492,6 +492,7 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 				
 				break;
 			case 55 : // Process MCQ
+			
 				MCQSession.getInstance().hideMediumPanel();
 				AppSession.getInstance().getApp().setMCQSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
@@ -499,10 +500,14 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 				
 				break;	
 			case 56 :
-				MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+				
+				MCQSession.getInstance().getAuthPanel().setVisible(true);
+				System.out.println("tototoooooo");
+				
 				break;
 				
 			case 57:
+				
 				MCQQuestionLinker.destroyInstance();
 				MCQQuestionLinker linker = MCQQuestionLinker.getInstance();
 				linker.setVisible(true);

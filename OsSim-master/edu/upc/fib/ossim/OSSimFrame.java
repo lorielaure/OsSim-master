@@ -4,7 +4,9 @@ import java.awt.Component;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 
-import javax.swing.*; 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  * Frame based application. Desktop environments 
@@ -64,6 +66,7 @@ public class OSSimFrame extends JFrame implements OSSim {
 	 */
 	@SuppressWarnings("unused")
 	public static void main (String args[]) { 
+		
 		
 		try{
 		    ServerSocket socket = 
