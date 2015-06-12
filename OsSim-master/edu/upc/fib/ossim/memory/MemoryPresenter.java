@@ -74,7 +74,6 @@ public class MemoryPresenter extends Presenter {
 	private int pageSize;
 	private ContextMemory context;
 	private boolean allocationFailure;
-	private PanelMemory pMemory;
 
 	/**************************************************************************************************/
 	/************************************* Class management ***************************************/
@@ -120,9 +119,7 @@ public class MemoryPresenter extends Presenter {
 		info = new InfoDialog(this, "me_41", "mem_info", false, INFO_WIDTH,
 				INFO_HEIGTH, null, context.getTableHeaderInfo(),
 				context.getTableInfoData());
-		pMemory =  new PanelMemory(this, "me_42");
-		pMemory.scrollv.setVisible(false);
-		return pMemory;
+		return new PanelMemory(this, "me_42");
 	}
 
 	public void createMenuItems() {
@@ -549,7 +546,6 @@ public class MemoryPresenter extends Presenter {
 							menuItemsMem.get(1));
 					super.getPainter(MEM_PAINTER).addMenuItem(
 							menuItemsMem.get(2));
-					pMemory.scrollv.setVisible(false);
 				}
 				if (action == 72) {
 
@@ -558,7 +554,6 @@ public class MemoryPresenter extends Presenter {
 					((MemorySettings) settings).paginationSetVisible(false);
 					((MemorySettings) settings).policyEnable(true);
 					super.getPainter(MEM_PAINTER).clearMenu();
-					pMemory.scrollv.setVisible(false);
 				}
 				if (action == 73) {
 
@@ -567,7 +562,6 @@ public class MemoryPresenter extends Presenter {
 					((MemorySettings) settings).policyEnable(false);
 					super.getPainter(MEM_PAINTER).clearMenu();
 					super.getPainter(VMEM_PAINTER).clearMenu();
-					pMemory.scrollv.setVisible(true);
 
 				}
 				if (action == 74) {
@@ -576,7 +570,6 @@ public class MemoryPresenter extends Presenter {
 					((MemorySettings) settings).paginationSetVisible(false);
 					((MemorySettings) settings).policyEnable(false);
 					super.getPainter(MEM_PAINTER).clearMenu();
-					pMemory.scrollv.setVisible(false);
 				}
 				settings.pack();
 				panel.setLabel(getAlgorithmInfo());

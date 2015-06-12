@@ -34,7 +34,6 @@ import edu.upc.fib.ossim.template.view.PanelTemplate;
  */
 public class PanelMemory extends PanelTemplate { 
 	private static final long serialVersionUID = 1L;
-	public JScrollPane scrollv;
 
 	/**
 	 * Constructs a PanelMemory 
@@ -54,7 +53,7 @@ public class PanelMemory extends PanelTemplate {
 	public void initSpecificLayout() {
 		
 		VirtualMemoryPainter vmem = (VirtualMemoryPainter) presenter.getPainter(MemoryPresenter.VMEM_PAINTER);
-		 scrollv = new JScrollPane();
+		JScrollPane scrollv = new JScrollPane();
 		scrollv.setViewportView(vmem);
 		scrollv.setPreferredSize(new Dimension(MemoryPresenter.MEMORY_WIDTH+10, MemoryPresenter.MEMORY_HEIGHT+10));
 		scrollv.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
