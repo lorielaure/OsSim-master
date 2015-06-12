@@ -32,6 +32,7 @@ import edu.upc.fib.ossim.mcq.MediumPanel;
 import edu.upc.fib.ossim.mcq.MemoryMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.ProcessMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.view.MCQCreationPanel;
+import edu.upc.fib.ossim.mcq.view.MCQDisplayExo;
 import edu.upc.fib.ossim.mcq.view.MCQQuestionLinker;
 import edu.upc.fib.ossim.mcq.view.MCQViewPanel;
 import edu.upc.fib.ossim.memory.MemoryPresenter;
@@ -500,6 +501,7 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 				break;	
 			case 56 :
 				MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+				new MCQDisplayExo().setVisible(true);;
 				break;
 				
 			case 57:
