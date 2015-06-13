@@ -7,13 +7,12 @@ import java.sql.SQLException;
 
 import edu.upc.fib.ossim.mcq.model.Etudiant;
 import static edu.upc.fib.ossim.dao.DAOUtils.*;
+import edu.upc.fib.ossim.utils.Constants;
 
 public class EtudiantDAOImpl implements EtudiantDAO{
 	
 	private FactoryDAO factoryDAO;
-	private static final String SQL_SELECT_PAR_LOGIN = "SELECT id, nomprenom_etudiant, login FROM Etudiant WHERE login = ?";
 	private static final String SQL_INSERT = "INSERT INTO Etudiant (login, password, nomprenom_etudiant) VALUES (?, ?, ?)";
-	private static final String SQL_UPDATE_MDP = "UPDATE ETUDIANT SET password= ? where id = ?";
 
 	
 
@@ -51,7 +50,7 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 	}
 
 	@Override
-	public Etudiant trouver(String login) throws DAOException {
+	public Etudiant trouver(long id) throws DAOException {
 		Connection connexion = null;
 	    PreparedStatement preparedStatement = null;
 	    ResultSet resultSet = null;
@@ -59,7 +58,7 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 	    try {
 	        /* Récupération d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
-	        preparedStatement = initialisationRequetePreparee( connexion, SQL_SELECT_PAR_LOGIN, false, login );
+	        preparedStatement = initialisationRequetePreparee( connexion, Constants.REQ_ETUDIANT_BY_ID, false, id );
 	        resultSet = preparedStatement.executeQuery();
 	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 	        if ( resultSet.next() ) {
@@ -79,7 +78,7 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 	    PreparedStatement preparedStatement = null;
 		try {
 			connexion = factoryDAO.getConnection();
-			preparedStatement = initialisationRequetePreparee( connexion, SQL_UPDATE_MDP, false, mdp, id);
+			preparedStatement = initialisationRequetePreparee( connexion, Constants.REQ_INIT_MDP_ETUDIANT, false, mdp, id);
 			int statut = preparedStatement.executeUpdate();
 	        /* Analyse du statut retourné par la requête d'insertion */
 	        if ( statut == 0 ) {
