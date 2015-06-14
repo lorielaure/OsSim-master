@@ -30,5 +30,11 @@ public class Constants {
 	public static final String REQ_BID_BY_PID = "list.bid.by.pid";
 	public static final String REQ_EXERCICE_PUBLIE = "list.exo.publie";
 	public static final String REQ_TEST_PUBLIE = "list.tests.publie";
-
+	
+	/*
+	 *############ Module QCM #############
+	 */
+	public static final int MODULE_PROCESS=1;
+	public static final int MODULE_MEMOIRE=2;
+	
 }

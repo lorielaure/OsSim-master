@@ -18,8 +18,8 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 
 	EtudiantDAOImpl( FactoryDAO daoFactory ) {
         this.factoryDAO = daoFactory;
-    } 
-	@Override
+    }
+	
 	public void creer(Etudiant etudiant) throws DAOException {
 		Connection connexion = null;
 	    PreparedStatement preparedStatement = null;
@@ -49,7 +49,7 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 		
 	}
 
-	@Override
+	
 	public Etudiant trouver(long id) throws DAOException {
 		Connection connexion = null;
 	    PreparedStatement preparedStatement = null;
@@ -72,7 +72,7 @@ public class EtudiantDAOImpl implements EtudiantDAO{
 	    return utilisateur; 
 	}
 
-	@Override
+	
 	public void reinitialiserMdp(long id, String mdp) throws DAOException {
 		Connection connexion = null;
 	    PreparedStatement preparedStatement = null;
