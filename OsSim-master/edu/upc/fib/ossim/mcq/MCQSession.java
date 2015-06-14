@@ -10,7 +10,8 @@ import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
-import edu.upc.fib.ossim.authentification.view.AuthPanel;
+import edu.upc.fib.ossim.mcq.view.PanelAuthentification;
+import edu.upc.fib.ossim.mcq.view.PanelAuthentification.Module;
 import edu.upc.fib.ossim.mcq.view.MCQChooserDialog;
 import edu.upc.fib.ossim.mcq.view.MCQCreationPanel;
 import edu.upc.fib.ossim.mcq.view.MCQViewPanel;
@@ -23,12 +24,12 @@ public class MCQSession {
 	private Hashtable<Integer,String> answers = new Hashtable<Integer, String>();
 	private static MCQSession instance = null;
 	private MCQChooserDialog chooser = null;
-	private AuthPanel authepanel = null;
+	private PanelAuthentification authepanel = null;
 
 	private MCQSession(){}
 	
-	public AuthPanel getAuthPanel(){
-		if(authepanel ==null) authepanel = new AuthPanel();
+	public PanelAuthentification getAuthPanel(Module m){
+		authepanel = new PanelAuthentification(m);
 			return authepanel;
 	}
 	

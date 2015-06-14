@@ -50,11 +50,9 @@ public class MediumPanel extends EscapeDialog implements ActionListener{
 		initSpecifics();
 	}
 
-
-
 	public void initSpecifics() {
 		this.setTitle("MCQ Control Panel");
-		//TODO move the labels to a seperate langugage file and use the Translation class to change between languges
+		//TODO move the labels to a seperate langugage file and use the Translation class to change between languages
 		uniqueChoice = new JCheckBox("Unique Choice");
 		uniqueChoice.setSelected(true);
 		multipleChoice = new JCheckBox ("Multiple Choice");

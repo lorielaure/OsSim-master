@@ -1,21 +1,10 @@
-/**
- * 
- */
-package edu.upc.fib.ossim.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-import edu.upc.fib.ossim.bean.Etudiant;
 
 /**
  * @author Laure
  *
  */
-public class EtudiantDAO implements Dao<Etudiant> {
+/*public class EtudiantDAO implements Dao<Etudiant> {
 
 	private Connection mConnection;
 	private PreparedStatement preparedStatement = null;
@@ -75,3 +64,17 @@ public class EtudiantDAO implements Dao<Etudiant> {
 
 
 }
+*/
+package edu.upc.fib.ossim.dao;
+
+import edu.upc.fib.ossim.mcq.model.Etudiant;
+
+public interface EtudiantDAO {
+	
+	void creer( Etudiant etudiant ) throws DAOException;
+	Etudiant trouver( long id ) throws DAOException; 
+	Etudiant chercher (String login, String motDePasseEtudiant) throws DAOException;
+	void reinitialiserMdp( long id, String mdp ) throws DAOException;
+
+}
+

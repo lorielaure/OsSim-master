@@ -1,21 +1,15 @@
+
 /**
  * 
  */
-package edu.upc.fib.ossim.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
-import edu.upc.fib.ossim.bean.Etudiant;
-import edu.upc.fib.ossim.bean.Professeur;
 
 /**
  * @author Laure
  *
  */
-public class ProfesseurDAO implements Dao<Professeur> {
+/*public class ProfesseurDAO implements Dao<Professeur> {
 
 	private Connection mConnection;
 	private PreparedStatement preparedStatement = null;
@@ -67,4 +61,16 @@ public class ProfesseurDAO implements Dao<Professeur> {
 		}
 		return professeur;
 	}
+}*/
+
+package edu.upc.fib.ossim.dao;
+
+
+import edu.upc.fib.ossim.mcq.model.Professeur;
+
+public interface ProfesseurDAO {
+	
+	Professeur chercher (String loginProfesseur, String motDePasseProfesseur) throws DAOException;
+
 }
+
