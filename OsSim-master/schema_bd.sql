@@ -24,7 +24,7 @@ CREATE TABLE `module_qr` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE saksaka.`exercice` (
   `id_exercice` int NOT NULL AUTO_INCREMENT,
-  `label_exercice` varchar(30) NOT NULL,
+  `Titre_exo` varchar(30) NOT NULL,
   `exo_type` char(1) NOT NULL,
   `isActif` boolean default false,
   PRIMARY KEY (`id_exercice`),
@@ -59,10 +59,9 @@ CREATE TABLE `algo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 CREATE TABLE `qr_memory` (
   `id_qr` int NOT NULL,
-  `pid` int NOT NULL,
-  `pid_name` varchar(10) NOT NULL,
+  `management` varchar(6) NOT NULL, 
   `pageSize` int,
-  `memSize` int,
+  `memorySize` int,
   `soSize` int,
   `policy` int NOT NULL,
   PRIMARY KEY (`id_qr`,`pid`),
@@ -77,8 +76,6 @@ CREATE TABLE `qr_mem_pag` (
   `bid` int NOT NULL,
   `size` int ,
   `load` boolean default false,
-  `duration` int ,
-  `quantum` int ,
   PRIMARY KEY (`id_qr`,`pid`,`bid`)
   ); 
   ALTER TABLE `qr_mem_pag`
@@ -90,17 +87,17 @@ CREATE TABLE `qr_param_processus` (
   `Quantum` int,
   `Var` boolean default false,
   `Verrou` int,
-  `Id_Algo` int NOT NULL,
+  `management` int NOT NULL,
   PRIMARY KEY (`id_qr`),
   KEY `fk_qr_pro` (`id_qr`),
   CONSTRAINT `FK_QR_PRO` FOREIGN KEY (`ID_QR`) REFERENCES `question_reponse` (`id_qr`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  KEY `fk_qr_pro_alg` (`Id_Algo`),
-  CONSTRAINT `FK_QR_PRO_ALG` FOREIGN KEY (`Id_Algo`) REFERENCES `algo` (`id_algo`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_qr_pro_alg` (`management`),
+  CONSTRAINT `FK_QR_PRO_ALG` FOREIGN KEY (`management`) REFERENCES `algo` (`id_algo`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
 CREATE TABLE `qr_processus` (
   `id_qr` int NOT NULL,
   `pid` int NOT NULL,
-  `pid_name` varchar(10) NOT NULL,
+  `p_name` varchar(10) NOT NULL,
   `Prio` int,
   `Submission` int,
   `Periodic` int,
@@ -109,6 +106,19 @@ CREATE TABLE `qr_processus` (
   `Variables` varchar(40),
   `Resources` varchar(40),
   `Queue_id` char(1) not null,
+  PRIMARY KEY (`id_qr`,`pid`),
+  KEY `fk_qr_pproc` (`id_qr`),
+  CONSTRAINT `FK_QR_PPRO` FOREIGN KEY (`ID_QR`) REFERENCES `qr_param_processus` (`id_qr`) ON DELETE NO ACTION ON UPDATE NO ACTION
+ ) ENGINE=InnoDB DEFAULT CHARSET=utf8;  
+ CREATE TABLE `qr_processus_mem` (
+  `id_qr` int NOT NULL,
+  `pid` int NOT NULL,
+  `p_name` varchar(10) NOT NULL,
+  `size` int NOT NULL,
+  `duration` int,
+  `Color` int,
+  `quantumOrders` varchar(40),
+  `quantum` int NOT NULL,
   PRIMARY KEY (`id_qr`,`pid`),
   KEY `fk_qr_pproc` (`id_qr`),
   CONSTRAINT `FK_QR_PPRO` FOREIGN KEY (`ID_QR`) REFERENCES `qr_param_processus` (`id_qr`) ON DELETE NO ACTION ON UPDATE NO ACTION
