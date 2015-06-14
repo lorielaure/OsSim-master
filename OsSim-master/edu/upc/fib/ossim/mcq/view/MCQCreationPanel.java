@@ -24,6 +24,8 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.border.TitledBorder;
 
+import edu.upc.fib.ossim.mcq.model.Answer;
+import edu.upc.fib.ossim.mcq.model.QR;
 import edu.upc.fib.ossim.utils.Functions;
 
 public class MCQCreationPanel extends JPanel {
@@ -296,6 +298,71 @@ public class MCQCreationPanel extends JPanel {
 			}
 
 			data.add(param);
+		}
+		return data;
+	}
+	/*
+	 * methode pour charger info QR et la liste des réponses de QR
+	 * @return QR
+	 */
+	public QR getBDData() {
+		QR data = new QR();
+
+		Vector<Vector<String>> param = new Vector<Vector<String>>();
+		Vector<String> attribute = new Vector<String>();
+
+		// Question Identifier
+		attribute.add("type");
+		attribute.add("question");
+
+		// Question Text
+		param.add(attribute);
+		attribute = new Vector<String>();
+		attribute.add("text");
+		attribute.add(question.getText());
+		param.add(attribute);
+
+		// Answer Type
+		data.setAnswerType("" + answerType);
+		// Block On Step
+		data.setBlockOnStep((Integer) block_on_step.getValue());
+		
+		// Number of Answers
+		data.setAnswerNumber(nbrAnswers);
+		
+		// Include Answers Identifier
+		if (includeAnswer.isSelected())
+			data.setIncludeAnswers(true);
+		else
+			data.setIncludeAnswers(false);
+		
+		// difficulty
+		data.setDifficulty((int) difficulty.getValue());
+		
+		// Answers
+
+		for (int it = 0; it < nbrAnswers; it++) {
+			Answer ans = new Answer();
+			if (answerType != 3)
+				ans.setText(answerGroup.get(it).getText());
+			else
+				ans.setText("");
+			if (includeAnswer.isSelected()) {
+				if (answerType != 3) {
+					if (radioGroup.get(it).isSelected())
+						ans.setValue(true);
+					else
+						ans.setValue(false);
+				} 
+				//je ne sais pas ce qu'on doit faire içi
+				/*else {
+					attribute.add(answerGroup.get(it).getText());
+				}*/
+				
+				param.add(attribute);
+			}
+
+			data.getAnswerList().add(ans);
 		}
 		return data;
 	}

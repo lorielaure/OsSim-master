@@ -14,6 +14,10 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ListSelectionEvent;
 
+import edu.upc.fib.ossim.mcq.model.ProcessusSimulationProcessus;
+import edu.upc.fib.ossim.mcq.model.QR;
+import edu.upc.fib.ossim.mcq.model.Simulation;
+import edu.upc.fib.ossim.mcq.model.SimulationProcessus;
 import edu.upc.fib.ossim.process.model.ContextProcess;
 import edu.upc.fib.ossim.process.model.ProcessStrategyFCFS;
 import edu.upc.fib.ossim.process.model.ProcessStrategyPrio;
@@ -693,7 +697,28 @@ public class ProcessPresenter extends Presenter {
 		}
 		return data;
 	}
-
+	/**
+	 * Returns all model information from a concrete child identified by <code>child</code>.
+	 * 
+	 * @see  #getXMLChilds()
+	 */
+	public SimulationProcessus getBDData() {
+		SimulationProcessus data = null;
+		// Params
+			data = new SimulationProcessus();
+			data.setManagement(settings.getAlgorithm());
+			data.setMultiprograming(((ProcessSettings) settings).getMultiprogramming());	
+			data.setPreemptive(((ProcessSettings) settings).getPreemptive());
+			data.setQuantum(((ProcessSettings) settings).getQuantumSize());
+			data.setVar(((ProcessSettings) settings).getVariablePartagee().isSelected());	
+			data.setVerrou(((ProcessSettings) settings).getverrouSize());
+		// Ready queue
+			data.getListeProcessus().addAll(context.getBDDataReady().getListeProcessus()); 
+		// Incoming queue
+			data.getListeProcessus().addAll(context.getBDDataArriving().getListeProcessus());
+		
+		return data;
+	}
 	/**
 	 * Builds all model information from a concrete child identified by <code>child</code>
 	 * 
@@ -762,7 +787,63 @@ public class ProcessPresenter extends Presenter {
 			throw new SoSimException("all_04");
 		}
 	}
+	/**
+	 * Builds all model information from a concrete child identified by <code>child</code>
+	 * 
+  	 * @see  #getXMLChilds()
+  	 */
+	public void putBDData(QR qr) throws SoSimException{
+		try {
+			    SimulationProcessus data = (SimulationProcessus) qr.getSimulation();
+			 	// Params
+				String actionCommand = data.getManagement();
+				boolean multiprogramming = data.isMultiprograming();
+				boolean preemptive = data.isPreemptive();
+				int quantum = data.getQuantum();
+				boolean var = data.isVar();
+				int verrou = data.getVerrou();
 
+				settings.selectAlgorithm(actionCommand);
+				((ProcessSettings) settings).selectMultiprogramming(multiprogramming);
+				((ProcessSettings) settings).setQuantumSize(quantum);
+				((ProcessSettings) settings).selectPreemptive(preemptive);
+				((ProcessSettings) settings).selectSharedVariable(var);
+				((ProcessSettings) settings).setverrouSize(verrou);
+				context.setPreemptive(preemptive);
+				actionSpecific(actionCommand); // Updates management.
+			
+				for (int i=0; i<data.getListeProcessus().size(); i++) { // Processes
+					ProcessusSimulationProcessus process = data.getListeProcessus().get(i);
+					Vector<Object> processData = new Vector<Object>();  
+
+					processData.add(process.getPid()); // pid. Value at position 1
+					processData.add(process.getName()); 			 // name. Value at position 1
+					processData.add(process.getPrio()); // prio. Value at position 1
+					processData.add(process.getSubmission()); // submission. Value at position 1
+					processData.add(process.isPeriodic()); // periodic. Value at position 1
+					processData.add(process.getColor()); // color. Value at position 1 (RGB value)
+//->
+					Vector<Integer> bursts= new Vector<Integer>();
+					Vector<Integer> variables= new Vector<Integer>();
+					Vector<Integer> resources= new Vector<Integer>();
+					String[] sbursts = process.getBursts().split(" ");
+					String[] svariables = process.getVariables().split(" ");
+					String[] sresources = process.getResources().split(" ");
+					for(int k = 0; k < sbursts.length; k++) {
+						bursts.add(new Integer(sbursts[k]));
+						variables.add(new Integer(svariables[k]));
+						resources.add(new Integer(sresources[k]));
+					}
+					processData.add(bursts);
+					processData.add(variables);
+					processData.add(resources);
+
+					context.addProcess(processData, timecontrols.getTime());
+				}	
+				} catch (Exception e) {
+			
+		}
+	}
 	
 //->
 	/**

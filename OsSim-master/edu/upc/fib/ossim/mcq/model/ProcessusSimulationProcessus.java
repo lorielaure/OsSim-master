@@ -14,11 +14,12 @@ public class ProcessusSimulationProcessus {
 	private String name;
 	private int submission;
 	private boolean periodic;
+	private int prio;
 	private String bursts;
 	private long color;
 	private String variables;
 	private String resources;
-	private String typeQueue;
+	private int typeQueue;
 	
 	
 	
@@ -33,7 +34,7 @@ public class ProcessusSimulationProcessus {
 	
 	public ProcessusSimulationProcessus(int pid, String name,
 			int submission, boolean periodic, String bursts, long color,
-			String variables, String resources, String typeQueue) {
+			String variables, String resources, int typeQueue) {
 		super();
 		this.pid = pid;
 		this.name = name;
@@ -99,11 +100,19 @@ public class ProcessusSimulationProcessus {
 	public void setResources(String resources) {
 		this.resources = resources;
 	}
-	public String getTypeQueue() {
+	public int getTypeQueue() {
 		return typeQueue;
 	}
-	public void setTypeQueue(String typeQueue) {
+	public void setTypeQueue(int typeQueue) {
 		this.typeQueue = typeQueue;
+	}
+
+	public int getPrio() {
+		return prio;
+	}
+
+	public void setPrio(int prio) {
+		this.prio = prio;
 	}
 	
 	

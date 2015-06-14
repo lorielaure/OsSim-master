@@ -4,12 +4,13 @@ import java.util.List;
 
 public class QR {
 	
+	private int idQR;
 	private int moduleQR; // Module de la question/réponse (mémoire ou processus)
 	private int blockOnStep;
 	private String enonce;
 	private boolean includeAnswers;
 	private int difficulty;
-	private char answerType;
+	private String answerType;
 	private int answerNumber;
 	private Simulation simulation;
 	private List<Answer> answerList;
@@ -22,7 +23,7 @@ public class QR {
 	}
 
 	public QR(int moduleQR, int blockOnStep, String enonce,
-			boolean includeAnswers, int difficulty, char answerType,
+			boolean includeAnswers, int difficulty, String answerType,
 			int answerNumber, Simulation simulation, List<Answer> answerList) {
 		super();
 		this.moduleQR = moduleQR;
@@ -37,6 +38,14 @@ public class QR {
 	}
 
 
+	
+	public int getIdQR() {
+		return idQR;
+	}
+
+	public void setIdQR(int idQR) {
+		this.idQR = idQR;
+	}
 
 	public int getAnswerNumber() {
 		return answerNumber;
@@ -74,11 +83,11 @@ public class QR {
 	public void setDifficulty(int difficulty) {
 		this.difficulty = difficulty;
 	}
-	public char getAnswerType() {
+	public String getAnswerType() {
 		return answerType;
 	}
-	public void setAnswerType(char answerType) {
-		this.answerType = answerType;
+	public void setAnswerType(String type) {
+		this.answerType = type;
 	}
 	public Simulation getSimulation() {
 		return simulation;

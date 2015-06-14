@@ -17,6 +17,8 @@ import java.util.Hashtable;
 
 
 
+
+import edu.upc.fib.ossim.mcq.model.SimulationProcessus;
 import edu.upc.fib.ossim.utils.ColorCell;
 import edu.upc.fib.ossim.utils.Translation;
 
@@ -724,6 +726,21 @@ public class ContextProcess {
 		}
 		return data;
 	}
+	/**
+	 * Returns process bd information from ready queue processes 
+	 * 
+	 * @return	process bd information from ready queue processes
+	 * 
+	 * @see Process#getProcessXMLInfo() 
+	 */
+	public SimulationProcessus getBDDataReady() {
+		SimulationProcessus data = new SimulationProcessus();
+		Iterator<Process> it = readyQueue.iterator();
+		while (it.hasNext()) {			
+			data.getListeProcessus().add(it.next().getProcessBDInfo(true));
+		}
+		return data;
+	}
 	
 	/**
 	 * Returns process xml information from arriving queue processes 
@@ -737,6 +754,21 @@ public class ContextProcess {
 		Iterator<Process> it = arrivingQueue.iterator();
 		while (it.hasNext()) {
 			data.add(it.next().getProcessXMLInfo());
+		}
+		return data;
+	}
+	/**
+	 * Returns process BD information from arriving queue processes 
+	 * 
+	 * @return	process BD information from arriving queue processes
+	 * 
+	 * @see Process#getProcessXMLInfo() 
+	 */
+	public  SimulationProcessus getBDDataArriving() {
+		SimulationProcessus data = new SimulationProcessus();
+		Iterator<Process> it = arrivingQueue.iterator();
+		while (it.hasNext()) {
+			data.getListeProcessus().add(it.next().getProcessBDInfo(false));
 		}
 		return data;
 	}

@@ -28,6 +28,7 @@ import edu.upc.fib.ossim.filesystem.view.FormFile;
 import edu.upc.fib.ossim.filesystem.view.FormFolder;
 import edu.upc.fib.ossim.filesystem.view.FormLink;
 import edu.upc.fib.ossim.filesystem.view.PanelFileSystem;
+import edu.upc.fib.ossim.mcq.model.QR;
 import edu.upc.fib.ossim.template.Presenter;
 import edu.upc.fib.ossim.template.view.PainterTemplate;
 import edu.upc.fib.ossim.template.view.PanelTemplate;
@@ -744,5 +745,11 @@ public class FileSystemPresenter extends Presenter {
 			e.printStackTrace();
 			throw new SoSimException("all_04");
 		}
+	}
+
+	@Override
+	public void putBDData(QR data) throws SoSimException {
+		// TODO Auto-generated method stub
+		
 	}
 }
