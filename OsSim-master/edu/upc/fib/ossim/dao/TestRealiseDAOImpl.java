@@ -62,23 +62,16 @@ public class TestRealiseDAOImpl implements TestRealiseDAO {
 		while (resultSet.next()) {
 			
 			 Exercice idExerice;
-			 System.out.println("toto");
-			 long idExo = resultSet.getLong(1);
-			 System.out.println("toto1");
-			 char typeExo = resultSet.getString(2).charAt(0);
-			 System.out.println("toto2");
-			 String titre = resultSet.getString(3);
-			 System.out.println("toto3");
-			 int actif = resultSet.getInt(4);
-			 System.out.println("toto4");
+			
+			 long idExo = resultSet.getLong("id_exercice");
+			 char typeExo = resultSet.getString("exo_type").charAt(0);
+			 String titre = resultSet.getString("titre_exo");
+			 int actif = resultSet.getInt("isActif");
 			 List<QR> listQR = null;
 			 idExerice = new Exercice(titre, typeExo, actif==0?false:true, listQR);
-			 
 			 Etudiant idEtudiant = PanelAuthentification.mEtudiant;
-			 int note = resultSet.getInt(8); // peut être int
-			 System.out.println("toto5");
-			 Date datePassageTest = resultSet.getDate(7);
-			 System.out.println("toto6");
+			 int note = resultSet.getInt("result"); // peut être int
+			 Date datePassageTest = resultSet.getDate("date_testpassing");
 			 mTestRealise = new TestRealise(idExerice, idEtudiant, note+"", datePassageTest);
 			
 			 listOfTest.add(mTestRealise);
@@ -130,14 +123,14 @@ public class TestRealiseDAOImpl implements TestRealiseDAO {
 			 idExerice = new Exercice(titre, typeExo, actif==0?false:true, listQR);
 			 
 			 
-			 int note = resultSet.getInt(8); // peut être int
+			 int note = resultSet.getInt("result"); // peut être int
 			 System.out.println("toto5");
-			 Date datePassageTest = resultSet.getDate(7);
-			 String nomPrenomEtudiant = resultSet.getString(13);
+			 Date datePassageTest = resultSet.getDate("date_testpassing");
+			 String nomPrenomEtudiant = resultSet.getString("nomprenom_Etudiant");
 			 System.out.println("toto6");
-			 String login = resultSet.getString(11);
+			 String login = resultSet.getString("login");
 			 System.out.println("toto7");
-			 String motDePasseEtudiant = resultSet.getString(12);
+			 String motDePasseEtudiant = resultSet.getString("password");
 			 System.out.println("toto8");
 			 Etudiant idEtudiant = new Etudiant(login, motDePasseEtudiant, nomPrenomEtudiant);
 			 mTestRealise = new TestRealise(idExerice, idEtudiant, note+"", datePassageTest);

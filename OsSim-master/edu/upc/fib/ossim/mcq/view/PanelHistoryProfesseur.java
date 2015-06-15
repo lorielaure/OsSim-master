@@ -3,8 +3,6 @@
  */
 package edu.upc.fib.ossim.mcq.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;
@@ -28,8 +26,10 @@ public class PanelHistoryProfesseur extends EscapeDialog{
 
 	private JTable historique;     
 	private JScrollPane scrollPane;
+	private long idTest;
 
-	public PanelHistoryProfesseur(){
+	public PanelHistoryProfesseur(long idtest){
+		this.idTest = idtest;
 		initSpecifics();
 	}
 
@@ -37,7 +37,7 @@ public class PanelHistoryProfesseur extends EscapeDialog{
 		this.setTitle("Liste des élèves ayant passé le test");
 
 		scrollPane = new JScrollPane();
-		HistoriqueTableModel mHistoriqueTableModel = new HistoriqueTableModel(3);// à remplacer ou renvoyer le bon idtest
+		HistoriqueTableModel mHistoriqueTableModel = new HistoriqueTableModel(idTest);// à remplacer ou renvoyer le bon idtest
 		historique = new JTable(mHistoriqueTableModel);
 		historique.setRowHeight(30);
 		historique.getTableHeader().setPreferredSize(new Dimension(5, 50));

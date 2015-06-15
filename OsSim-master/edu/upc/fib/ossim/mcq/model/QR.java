@@ -4,6 +4,7 @@ import java.util.List;
 
 public class QR {
 	
+	private int idQR;
 	private int moduleQR; // Module de la question/réponse (mémoire ou processus)
 	private int blockOnStep;
 	private String enonce;
@@ -37,6 +38,14 @@ public class QR {
 	}
 
 
+	
+	public int getIdQR() {
+		return idQR;
+	}
+
+	public void setIdQR(int idQR) {
+		this.idQR = idQR;
+	}
 
 	public int getAnswerNumber() {
 		return answerNumber;

@@ -41,10 +41,10 @@ public class ProfesseurDAOImpl implements ProfesseurDAO {
 		// ResultSet is initially before the first data set
 	    	Professeur professeur = null;
 		while (resultSet.next()) {
-			String loginProfesseur = resultSet.getString("loginProfesseur");
-			String motDePasseProfesseur = resultSet.getString("motDePasseProfesseur");
-			long idProfesseur = resultSet.getLong("idProfesseur");
-			String nomPrenomProfesseur = resultSet.getString("nomPrenomProfesseur");
+			String loginProfesseur = resultSet.getString("login");
+			String motDePasseProfesseur = resultSet.getString("password");
+			long idProfesseur = resultSet.getLong("id_Professeur");
+			String nomPrenomProfesseur = resultSet.getString("nomPrenom_Professeur");
 			professeur = new Professeur( loginProfesseur, motDePasseProfesseur, nomPrenomProfesseur);
 			professeur.setIdProdesseur(idProfesseur);
 		}

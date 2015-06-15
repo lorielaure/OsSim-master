@@ -50,7 +50,7 @@ public class PanelAuthentification extends EscapeDialog implements ActionListene
 	}
 
 	public void initSpecifics() {
-		this.setTitle("Authentification Panel");
+		this.setTitle("Connexion");
 		//TODO move the labels to a seperate langugage file and use the Translation class to change between languages
 		lblLogin = new JLabel("Login:");
 		lblpass = new JLabel("Password:");
@@ -82,7 +82,8 @@ public class PanelAuthentification extends EscapeDialog implements ActionListene
 		if ((mEtudiant != null)||(mProfesseur != null)){
 			super.setVisible(false);
 			if (module == Module.mcq) 
-				MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+				//MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+				MCQSession.getInstance().getMCQDisplayExo().setVisible(true);
 			else if (module == Module.mcqc && slected.compareTo(catEtudiant) != 0 ){
 				MCQSession.destroyInstance();
 				MCQSession.getInstance();
@@ -127,7 +128,8 @@ public class PanelAuthentification extends EscapeDialog implements ActionListene
 
 					this.dispose();
 					if (module == Module.mcq)
-						MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+						//MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+						MCQSession.getInstance().getMCQDisplayExo().setVisible(true);
 					else 
 						JOptionPane.showMessageDialog(this, "like Student, you don't have access to this module !!!", "Access Denied", JOptionPane.ERROR_MESSAGE);
 				}else
@@ -138,7 +140,8 @@ public class PanelAuthentification extends EscapeDialog implements ActionListene
 				if(mProfesseur != null){
 					this.dispose();
 					if (module == Module.mcq)
-						MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+						//MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+						MCQSession.getInstance().getMCQDisplayExo().setVisible(true);
 					if (module == Module.mcqc){
 						MCQSession.destroyInstance();
 						MCQSession.getInstance();

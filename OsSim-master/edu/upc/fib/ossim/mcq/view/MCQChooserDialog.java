@@ -107,6 +107,7 @@ public class MCQChooserDialog extends EscapeDialog implements HyperlinkListener{
 			}
 		}
 	}
+	
 	public void getNext(){
 		
 		try {

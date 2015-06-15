@@ -28,8 +28,11 @@ public class PanelHistoryEtudiant extends EscapeDialog {
 
 	private JTable historique;     
 	private JScrollPane scrollPane;
+	private long idEtudiant;
 	
 	public PanelHistoryEtudiant(){
+		if(PanelAuthentification.mEtudiant != null)
+		this.idEtudiant = PanelAuthentification.mEtudiant.getIdEtudiant();
 		initSpecifics();
 	}
 
@@ -37,7 +40,7 @@ public class PanelHistoryEtudiant extends EscapeDialog {
 		this.setTitle("Historique");
 
 		scrollPane = new JScrollPane();
-		HistoriqueTableModel mHistoriqueTableModel = new HistoriqueTableModel(1);
+		HistoriqueTableModel mHistoriqueTableModel = new HistoriqueTableModel(idEtudiant);
 		historique = new JTable(mHistoriqueTableModel);
 		historique.setRowHeight(30);
 		historique.getTableHeader().setPreferredSize(new Dimension(5, 50));

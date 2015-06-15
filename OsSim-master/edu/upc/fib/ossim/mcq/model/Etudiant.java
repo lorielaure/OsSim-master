@@ -12,9 +12,6 @@ public class Etudiant {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 
 	public Etudiant(String login, String motDePasseEtudiant,
 			String nomPrenomEtudiant) {
