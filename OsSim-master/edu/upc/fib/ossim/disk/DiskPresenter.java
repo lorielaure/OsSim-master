@@ -23,6 +23,7 @@ import edu.upc.fib.ossim.disk.view.FormBlock;
 import edu.upc.fib.ossim.disk.view.GraphPainter;
 import edu.upc.fib.ossim.disk.view.InfoPainter;
 import edu.upc.fib.ossim.disk.view.PanelDisk;
+import edu.upc.fib.ossim.mcq.model.QR;
 import edu.upc.fib.ossim.template.Presenter;
 import edu.upc.fib.ossim.template.view.PainterTemplate;
 import edu.upc.fib.ossim.template.view.PanelTemplate;
@@ -510,5 +511,11 @@ public class DiskPresenter extends Presenter {
 		} catch (Exception e) {
 			throw new SoSimException("all_04");
 		}
+	}
+
+	@Override
+	public void putBDData(QR data) throws SoSimException {
+		// TODO Auto-generated method stub
+		
 	}
 }

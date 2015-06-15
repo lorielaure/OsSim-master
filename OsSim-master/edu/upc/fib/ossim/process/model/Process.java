@@ -2,6 +2,7 @@ package edu.upc.fib.ossim.process.model;
 import java.awt.Color;
 import java.util.Vector;
 
+import edu.upc.fib.ossim.mcq.model.ProcessusSimulationProcessus;
 import edu.upc.fib.ossim.utils.ColorCell;
 import edu.upc.fib.ossim.utils.Translation;
 
@@ -429,7 +430,43 @@ public class Process implements Comparable<Process>, Cloneable {
 		
 		return data;
 	}
-	
+	/**
+	 * Returns process bd information, pairs attribute name - attribute value: pid, name, prio, init, duration, bursts (vector converted to String 1 0 0 1 ..., blank between bursts) and color
+	 * 
+	 * @return	process bd information
+	 */
+	public ProcessusSimulationProcessus getProcessBDInfo(boolean isReady) {
+		// Process xml information  
+		ProcessusSimulationProcessus data = new ProcessusSimulationProcessus();
+		data.setPid(pid);
+		data.setName(name);
+		data.setPrio(prio);
+		data.setSubmission(timesubmission);
+		data.setPeriodic(periodic);
+		
+//-> modification ici en suivant le plan
+		String sbursts = ""; // Convert bursts to String 1 0 0 1 ..., blank between bursts
+		String svariables = ""; // Convert operation to String 1 0 0 2 ..., blank between operation (read, write, or nothing)
+		String sresources = ""; // Convert resource to String 1 0 0 2 ..., blank between lock's operation
+		for(int i = 0; i < burstsCycle.size(); i++) {
+			sbursts += burstsCycle.get(i) + " ";
+			if(variables.size() > 0) svariables += variables.get(i) + " ";
+			else svariables += "0 ";
+			if(resources.size() > 0) sresources += resources.get(i) + " ";
+			else sresources += "0 ";
+		}
+		data.setBursts(sbursts);
+		data.setColor(color.getRGB());
+		//->
+		data.setVariables(svariables);
+		data.setResources(sresources);
+		if (isReady) {
+			data.setTypeQueue(0); //ready
+		}else data.setTypeQueue(1); //arriving
+		
+		
+		return data;
+	}
 	/**
 	 * Compare this process with p 
 	 * 

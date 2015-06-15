@@ -1,4 +1,6 @@
 
+
+
 package edu.upc.fib.ossim.utils;
 
 public class Constants {
@@ -48,4 +50,6 @@ public class Constants {
 	public static final int MODULE_MEMOIRE=2;
 	
 }
+
+
 

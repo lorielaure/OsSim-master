@@ -15,6 +15,7 @@ import java.net.URL;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.Vector;
@@ -31,6 +32,9 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.text.JTextComponent;
 
 import edu.upc.fib.ossim.AppSession;
+import edu.upc.fib.ossim.dao.FactoryDAO;
+import edu.upc.fib.ossim.mcq.model.QR;
+import edu.upc.fib.ossim.mcq.model.Simulation;
 import edu.upc.fib.ossim.mcq.view.MCQQuestionLinker;
 import edu.upc.fib.ossim.template.view.FormTemplate;
 import edu.upc.fib.ossim.template.view.PainterTemplate;
@@ -96,6 +100,7 @@ public abstract class Presenter implements Observer, ChangeListener, ActionListe
 	protected boolean started; // Simulation started
 
 	protected URL opened = null;
+	private FactoryDAO          daoFactory;
 
 
 	/**************************************************************************************************/
@@ -916,6 +921,26 @@ public abstract class Presenter implements Observer, ChangeListener, ActionListe
 		// Updates panel information
 		panel.setLabel(getAlgorithmInfo());
 	}
+	/**
+	 * Initialize context and load's an xml document from a file
+	 *
+	 * @param file	xml file
+	 * 
+	 * @see XMLParserJDOM
+	 * 
+	 */
+	public void loadBD(int idExo) throws SoSimException{
+		this.daoFactory = FactoryDAO.getInstance();
+		List<QR> listQr=this.daoFactory.getExerciceDAO().getListQRByExo(idExo);
+		QR data = null;
+		for (int i = 0; i< listQr.size(); i++) {
+			data = new QR();
+			putBDData(data);
+		}
+
+		// Updates panel information
+		panel.setLabel(getAlgorithmInfo());
+	}
 
 	/**
 	 * Save a simulation into an xml file
@@ -977,5 +1002,14 @@ public abstract class Presenter implements Observer, ChangeListener, ActionListe
 	 * @see XMLParserJDOM#addElements
 	 */
 	public abstract void putXMLData(int child, Vector<Vector<Vector<String>>> data) throws SoSimException;
+	/**
+	 * Abstract method that build all model information from a simulation
+	 * 
+	 * 
+	 * @param data child's data
+	 * @throws SoSimException	exception thrown by parser  
+	 * 
+	 */
+	public abstract void putBDData(QR data) throws SoSimException;
 
 }

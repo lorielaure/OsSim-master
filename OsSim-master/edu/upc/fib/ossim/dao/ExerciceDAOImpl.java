@@ -1,4 +1,5 @@
 
+
 package edu.upc.fib.ossim.dao;
 
 import static edu.upc.fib.ossim.dao.DAOUtils.*;
@@ -116,4 +117,5 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 		 return exercice;
 	 }
 }
+
 

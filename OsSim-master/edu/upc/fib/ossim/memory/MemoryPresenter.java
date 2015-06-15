@@ -11,6 +11,7 @@ import javax.swing.JSpinner;
 import javax.swing.event.ChangeEvent;
 
 import edu.upc.fib.ossim.AppSession;
+import edu.upc.fib.ossim.mcq.model.QR;
 import edu.upc.fib.ossim.memory.model.ContextMemory;
 import edu.upc.fib.ossim.memory.model.MemStrategyFIXED;
 import edu.upc.fib.ossim.memory.model.MemStrategyPAG;
@@ -1185,5 +1186,11 @@ public class MemoryPresenter extends Presenter {
 			e.printStackTrace();
 			throw new SoSimException("all_04");
 		}
+	}
+
+	@Override
+	public void putBDData(QR data) throws SoSimException {
+		// TODO Auto-generated method stub
+		
 	}
 }
