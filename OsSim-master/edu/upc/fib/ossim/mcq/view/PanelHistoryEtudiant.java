@@ -30,8 +30,10 @@ public class PanelHistoryEtudiant extends EscapeDialog {
 	private JScrollPane scrollPane;
 	private long idEtudiant;
 	
-	public PanelHistoryEtudiant(long idEtudiant){
-		this.idEtudiant = idEtudiant;
+	public PanelHistoryEtudiant(){
+		if(PanelAuthentification.mEtudiant != null)
+		this.idEtudiant = PanelAuthentification.mEtudiant.getIdEtudiant();
+
 		initSpecifics();
 	}
 

@@ -1,3 +1,4 @@
+
 package edu.upc.fib.ossim.dao;
 
 import java.sql.Connection;
@@ -104,4 +105,44 @@ public class EtudiantDAOImpl implements EtudiantDAO{
         etudiant.setLogin(resultSet.getString( "login" ) );
         return etudiant;
     } 
+
+    
+    public Etudiant chercher(String login, String motDePasseEtudiant)
+    		throws DAOException {
+
+    	
+    	// Statements allow to issue SQL queries to the database
+    	try {
+    		
+    		Connection mConnection = factoryDAO.getConnection();
+    		PreparedStatement preparedStatement = null;
+    		ResultSet resultSet = null;
+
+    		preparedStatement = mConnection .prepareStatement(
+    				DAOUtils.getProperties().getProperty( Constants.REQ_AUTHENTIFICATION_ETUDIANT));
+    		preparedStatement.setString(1, login);
+    		preparedStatement.setString(2, motDePasseEtudiant);
+
+    		resultSet = preparedStatement.executeQuery();
+    		return writeResultSet(resultSet);
+
+    	} catch (Exception e) {
+    		// TODO Auto-generated catch block
+    		e.printStackTrace();
+    	}
+    	return null;
+    } 
+        private Etudiant writeResultSet(ResultSet resultSet) throws SQLException {
+    	// ResultSet is initially before the first data set
+    	Etudiant etudiant = null;
+    	while (resultSet.next()) {
+    		String login = resultSet.getString("login");
+    		String motDePasseEtudiant = resultSet.getString("password");
+    		long idEtudiant = resultSet.getLong("id_Etudiant");
+    		String nomPrenomEtudiant = resultSet.getString("nomPrenom_Etudiant");
+    		etudiant = new Etudiant( login, motDePasseEtudiant, nomPrenomEtudiant);
+    		etudiant.setIdEtudiant(idEtudiant);
+    		}
+    	return etudiant;
+        }
 }

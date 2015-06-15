@@ -50,7 +50,8 @@ public class PanelAuthentification extends EscapeDialog implements ActionListene
 	}
 
 	public void initSpecifics() {
-		this.setTitle("Authentification Panel");
+		this.setTitle("Connexion");
+
 		//TODO move the labels to a seperate langugage file and use the Translation class to change between languages
 		lblLogin = new JLabel("Login:");
 		lblpass = new JLabel("Password:");

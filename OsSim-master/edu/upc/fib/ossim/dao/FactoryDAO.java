@@ -31,8 +31,8 @@ public class FactoryDAO {
         String nomUtilisateur;
         String motDePasse;
         
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream fichierProperties = classLoader.getResourceAsStream( FICHIER_PROPERTIES );
+
+        InputStream fichierProperties = FactoryDAO.class.getResourceAsStream( FICHIER_PROPERTIES );
         
         if ( fichierProperties == null ) {
             throw new DAOConfigurationException( "Le fichier properties " + FICHIER_PROPERTIES + " est introuvable." );

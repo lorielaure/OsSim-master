@@ -5,7 +5,9 @@ import java.util.List;
 import edu.upc.fib.ossim.mcq.model.TestRealise;
 
 public interface TestRealiseDAO {
-	List<TestRealise> getListTestsByEtudiant(long idEtudiant); //label exercice | note
-	List<TestRealise> getListEtudiantsByTest(long idExercice); //nometudiant |note
+
+	List<TestRealise> getListTestsByEtudiant(long idEtudiant); //label exercice | note |date de passage
+	List<TestRealise> getListEtudiantsByTest(long idExercice); //nometudiant |note | date de passage
+
 
 }

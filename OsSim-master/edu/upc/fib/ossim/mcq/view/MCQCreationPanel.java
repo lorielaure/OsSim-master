@@ -337,7 +337,7 @@ public class MCQCreationPanel extends JPanel {
 			data.setIncludeAnswers(false);
 		
 		// difficulty
-		data.setDifficulty((int) difficulty.getValue());
+		data.setDifficulty((Integer.parseInt( difficulty.getValue().toString())));
 		
 		// Answers
 

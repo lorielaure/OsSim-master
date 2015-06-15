@@ -12,9 +12,6 @@ public class Etudiant {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	
 
 	public Etudiant(String login, String motDePasseEtudiant,
 			String nomPrenomEtudiant) {
@@ -58,7 +55,18 @@ public class Etudiant {
 		this.nomPrenomEtudiant = nomPrenomEtudiant;
 	}
 
-	
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Etudiant [idEtudiant=" + idEtudiant + ", login=" + login
+				+ ", motDePasseEtudiant=" + motDePasseEtudiant
+				+ ", nomPrenomEtudiant=" + nomPrenomEtudiant + "]";
+	}
+
 	
 	
 

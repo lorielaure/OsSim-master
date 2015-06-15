@@ -3,8 +3,7 @@
  */
 package edu.upc.fib.ossim.mcq.view;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Frame;

@@ -6,16 +6,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Hashtable;
-import java.util.List;
 import java.util.Locale;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -28,13 +25,17 @@ import edu.upc.fib.ossim.filesystem.FileSystemPresenter;
 import edu.upc.fib.ossim.mcq.DiskMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.FileSystemMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.MCQSession;
-import edu.upc.fib.ossim.mcq.MediumPanel;
 import edu.upc.fib.ossim.mcq.MemoryMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.ProcessMCQCreatorPresenter;
 import edu.upc.fib.ossim.mcq.view.MCQCreationPanel;
 import edu.upc.fib.ossim.mcq.view.MCQDisplayExo;
+
+import edu.upc.fib.ossim.mcq.view.PanelAuthentification;
+import edu.upc.fib.ossim.mcq.view.PanelAuthentification.Module;
+
 import edu.upc.fib.ossim.mcq.view.MCQQuestionLinker;
-import edu.upc.fib.ossim.mcq.view.MCQViewPanel;
+import edu.upc.fib.ossim.mcq.view.PanelHistoryEtudiant;
+import edu.upc.fib.ossim.mcq.view.PanelHistoryProfesseur;
 import edu.upc.fib.ossim.memory.MemoryPresenter;
 import edu.upc.fib.ossim.process.ProcessPresenter;
 import edu.upc.fib.ossim.utils.Functions;
@@ -185,7 +186,7 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 		saveasMenuItem.addActionListener(this);
 		saveasMenuItem.setEnabled(false); // Disabled until opening any simulation
 		fileMenu.add(saveasMenuItem); 
-		
+
 		homeMenuItem = new JMenuItem(); 
 		homeMenuItem.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
 		homeMenuItem.setText(Translation.getInstance().getLabel("all_14")); 
@@ -412,7 +413,7 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 				if (AppSession.getInstance().getPresenter() != null) AppSession.getInstance().getPresenter().actionPerformed(e);
 				break;
 			case 4:	// home
-				
+
 				home();
 				break;
 			case 5:	// about
@@ -445,66 +446,81 @@ public class Menu extends JMenuBar implements ActionListener, Observer {
 				AppSession.getInstance().getApp().setDefaultSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new ProcessPresenter(true));
-				
+
 				break;	
 			case 30:	// Memory 
 				AppSession.getInstance().getApp().setDefaultSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new MemoryPresenter(true));
-				
+
 				break;	
 			case 40:	// Disk
 				AppSession.getInstance().getApp().setDefaultSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new DiskPresenter(true));
-				
+
 				break;	
 			case 50:	// File system
 				AppSession.getInstance().getApp().setDefaultSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new FileSystemPresenter(true));
-				
+
 				break;	
 			case 51 : // MediumPanel
-				MCQSession.destroyInstance();
+
+				MCQSession.getInstance().getAuthPanel(Module.mcqc).setVisible(true);
+				//	else  MCQSession.getInstance().getAuthPanel(Module.mcqc).setVisible(false);
+				/*MCQSession.destroyInstance();
 				MCQSession.getInstance();
-				MCQSession.getInstance().getMediumPanel();
+				MCQSession.getInstance().getMediumPanel();*/
 				break;
 			case 52 : // Disk MCQ
 				MCQSession.getInstance().hideMediumPanel();
 				AppSession.getInstance().getApp().setMCQSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new DiskMCQCreatorPresenter(true));
-				
+
 				break;	
 			case 53 : // Memory MCQ
 				MCQSession.getInstance().hideMediumPanel();
 				AppSession.getInstance().getApp().setMCQSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new MemoryMCQCreatorPresenter(true));
-				
+
 				break;	
-				
+
 			case 54 : // File System MCQ
 				MCQSession.getInstance().hideMediumPanel();
 				AppSession.getInstance().getApp().setMCQSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new FileSystemMCQCreatorPresenter(true));
-				
+
 				break;
 			case 55 : // Process MCQ
+
 				MCQSession.getInstance().hideMediumPanel();
 				AppSession.getInstance().getApp().setMCQSize();
 				if (AppSession.getInstance().getPresenter() != null)  AppSession.getInstance().getPresenter().closeInfo();
 				AppSession.getInstance().setPresenter(new ProcessMCQCreatorPresenter(true));
-				
+
 				break;	
+
+
+
 			case 56 :
-				MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
-				new MCQDisplayExo().setVisible(true);;
+
+				//MCQSession.getInstance().getMCQChooserDialog().setVisible(true);
+				//new MCQDisplayExo().setVisible(true);
+				//new PanelHistoryEtudiant().setVisible(true);
+				//new PanelHistoryProfesseur().setVisible(true);
+				MCQSession.getInstance().getAuthPanel(Module.mcq).setVisible(true);
+				//System.out.println("tototoooooo");
+
+
 				break;
-				
+
 			case 57:
+
 				MCQQuestionLinker.destroyInstance();
 				MCQQuestionLinker linker = MCQQuestionLinker.getInstance();
 				linker.setVisible(true);

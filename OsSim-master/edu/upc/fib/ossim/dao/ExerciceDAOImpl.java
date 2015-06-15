@@ -1,3 +1,4 @@
+
 package edu.upc.fib.ossim.dao;
 
 import static edu.upc.fib.ossim.dao.DAOUtils.fermeturesSilencieuses;
@@ -10,16 +11,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.upc.fib.ossim.mcq.model.Answer;
-import edu.upc.fib.ossim.mcq.model.Etudiant;
 import edu.upc.fib.ossim.mcq.model.Exercice;
-import edu.upc.fib.ossim.mcq.model.ProcessusSimulationMemoire;
-import edu.upc.fib.ossim.mcq.model.ProcessusSimulationProcessus;
 import edu.upc.fib.ossim.mcq.model.QR;
-import edu.upc.fib.ossim.mcq.model.Simulation;
-import edu.upc.fib.ossim.mcq.model.SimulationMemoire;
-import edu.upc.fib.ossim.mcq.model.SimulationProcessus;
 import edu.upc.fib.ossim.utils.Constants;
+import edu.upc.fib.ossim.dao.DAOUtils;
 
 public class ExerciceDAOImpl implements ExerciceDAO{
 
@@ -68,7 +63,9 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 	    try {
 	        /* Récupération d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
-	        preparedStatement = initialisationRequetePreparee( connexion, Constants.REQ_EXERCICE_PUBLIE, false);
+
+	        preparedStatement = initialisationRequetePreparee( connexion,DAOUtils.getProperties().getProperty(Constants.REQ_EXERCICE_PUBLIE), false);
+
 	        resultSet = preparedStatement.executeQuery();
 	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 	        if ( resultSet.next() ) {
@@ -91,7 +88,9 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 	    try {
 	        /* Récupération d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
-	        preparedStatement = initialisationRequetePreparee( connexion, Constants.REQ_TEST_PUBLIE, false);
+
+	        preparedStatement = initialisationRequetePreparee( connexion, DAOUtils.getProperties().getProperty(Constants.REQ_TEST_PUBLIE), false);
+
 	        resultSet = preparedStatement.executeQuery();
 	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
 	        if ( resultSet.next() ) {
@@ -111,7 +110,12 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 		 Exercice exercice=new Exercice();
 		 exercice.setIdExercice(resultSet.getInt("Id_exercice"));
 		 exercice.setTitreExercice(resultSet.getString("Titre_exo"));
-		 exercice.setTypeExercice(resultSet.getString("Exo_type").charAt(0));
+
+		 exercice.setTypeExercice(resultSet.getString("exo_type").charAt(0));
+		 System.out.println(exercice.toString());
 		 return exercice;
 	 }
 }
+
+
+

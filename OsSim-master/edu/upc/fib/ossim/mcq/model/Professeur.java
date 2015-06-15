@@ -2,7 +2,8 @@ package edu.upc.fib.ossim.mcq.model;
 
 public class Professeur {
 	
-	private int idProdesseur;
+
+	private long idProdesseur;
 	private String LoginProfesseur;
 	private String motDePasseProfesseur;
 	private String nomPrenomProfesseur;
@@ -21,11 +22,13 @@ public class Professeur {
 		this.nomPrenomProfesseur = nomPrenom_Professeur;
 	}
 
-	public int getIdProdesseur() {
+
+
+	public long getIdProdesseur() {
 		return idProdesseur;
 	}
 
-	public void setIdProdesseur(int idProdesseur) {
+	public void setIdProdesseur(long idProdesseur) {
 		this.idProdesseur = idProdesseur;
 	}
 
@@ -51,6 +54,18 @@ public class Professeur {
 
 	public void setNomPrenomProfesseur(String nomPrenomProfesseur) {
 		this.nomPrenomProfesseur = nomPrenomProfesseur;
+	}
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Professeur [idProdesseur=" + idProdesseur
+				+ ", LoginProfesseur=" + LoginProfesseur
+				+ ", motDePasseProfesseur=" + motDePasseProfesseur
+				+ ", nomPrenomProfesseur=" + nomPrenomProfesseur + "]";
 	}
 	
 	

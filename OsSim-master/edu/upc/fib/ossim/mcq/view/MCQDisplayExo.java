@@ -1,18 +1,14 @@
 package edu.upc.fib.ossim.mcq.view;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JEditorPane;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
 
 import edu.upc.fib.ossim.dao.ExerciceDAO;
+import edu.upc.fib.ossim.dao.FactoryDAO;
 import edu.upc.fib.ossim.mcq.model.Exercice;
 import edu.upc.fib.ossim.utils.EscapeDialog;
 
@@ -23,6 +19,9 @@ public class MCQDisplayExo extends EscapeDialog implements HyperlinkListener{
 	private JEditorPane editorPane = null;
 	private JScrollPane editorScrollPane = null;
 	public String exercices, tests;
+
+	private FactoryDAO factoryDAO; 
+
 	
 	ExerciceDAO exerciceDAO;
 	
@@ -40,7 +39,8 @@ public class MCQDisplayExo extends EscapeDialog implements HyperlinkListener{
 				+ exercices
 				+ "<H1> Tests </H1>"
 				+ tests
-				+"<H1> Historique </H1>"
+
+				+"<H1><a href=historique> History </a></H1>"
 				+ "</body></html>");
 		
 		editorScrollPane=new JScrollPane(editorPane);
@@ -52,32 +52,54 @@ public class MCQDisplayExo extends EscapeDialog implements HyperlinkListener{
 
 	public String initListExecices() {
 
-//		List<Exercice> exercices = exerciceDAO.getListExercicePublies();
+		this.factoryDAO = FactoryDAO.getInstance();
+
+		List<Exercice> exercices = this.factoryDAO.getExerciceDAO().getListExercicePublies();
 		String exo = "<ul>";
-//		for (int i = 0; i < exercices.size(); i++) {
-//			exo += "<li><a href='" + exercices.get(i).getIdExercice() + "'>"
-//					+ exercices.get(i).getTitreExercice() + "</a></li>";
-//		}
-//		exo = "</ul>";
+		for (int i = 0; i < exercices.size(); i++) {
+			exo += "<li><a href='exercice/" + exercices.get(i).getIdExercice() + "'>"
+					+ exercices.get(i).getTitreExercice() + "</a></li>";
+		}
+		exo += "</ul>";
 		return exo;
 	}
 
 	public String initListTest() {
 
-//		List<Exercice> tests = exerciceDAO.getListTestPublies();
+
+		this.factoryDAO = FactoryDAO.getInstance();
+
+		List<Exercice> tests = this.factoryDAO.getExerciceDAO().getListTestPublies();
 		String test = "<ul>";
-//		for (int i = 0; i < tests.size(); i++) {
-//			test += "<li><a href='" + tests.get(i).getIdExercice() + "'>"
-//					+ tests.get(i).getTitreExercice() + "</a></li>";
-//		}
-//		test = "</ul>";
+		for (int i = 0; i < tests.size(); i++) {
+			test += "<li><a href='test/" + tests.get(i).getIdExercice() + "'>"
+					+ tests.get(i).getTitreExercice() + "</a></li>";
+		}
+		test+= "</ul>";
 		return test;
 	}
-	
-
 	public void hyperlinkUpdate(HyperlinkEvent e) {
 		if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED)
 		{
+			
+			//affichage de l'historique de l'étudiant loggué 
+			
+			if (e.getDescription().equals("historique")&& PanelAuthentification.mEtudiant != null){
+				
+				new PanelHistoryEtudiant().setVisible(true);	
+			}else if(e.getDescription().contains("test") && PanelAuthentification.mProfesseur != null){
+				
+				//historique professeur : vue pour un test donné
+				String urlToken[] = e.getDescription().split("/");
+				if(urlToken.length > 1){
+					int  idTest = Integer.parseInt(urlToken[1]);
+					new PanelHistoryProfesseur(idTest).setVisible(true);
+					
+				}
+			}
+			
+			
+
 //			name = JOptionPane.showInputDialog(null,
 //					"Enter Your Name:",
 //					"", JOptionPane.QUESTION_MESSAGE);
@@ -85,6 +107,7 @@ public class MCQDisplayExo extends EscapeDialog implements HyperlinkListener{
 			
 				
 				System.out.println("id="+e.getDescription()); // id de l'exo
+
 //				if (url != null) {
 //					if (url.toString().endsWith("xml")) {  // Load simulation
 //						parseXML(url);
@@ -102,8 +125,5 @@ public class MCQDisplayExo extends EscapeDialog implements HyperlinkListener{
 			
 		}
 	}
-	
-	
-	
 
 }
