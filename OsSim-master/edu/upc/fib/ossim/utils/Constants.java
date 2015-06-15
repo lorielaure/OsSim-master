@@ -44,7 +44,7 @@ public class Constants {
 	/*
 	 *############ Module QCM #############
 	 */
-	public static final int MODULE_PROCESS=1;
+	public static final int MODULE_PROCESS=1; 
 	public static final int MODULE_MEMOIRE=2;
 	
 }
