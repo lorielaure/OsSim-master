@@ -30,11 +30,11 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 	    ResultSet resultSet = null;
 	    List<QR> qr = new ArrayList<QR>();
 	    try {
-	        /* Récupération d'une connexion depuis la Factory */
+	        /* RÃ©cupÃ©ration d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
-	        preparedStatement = initialisationRequetePreparee( connexion, Constants.REQ_QR_BY_EXERCICE, false, idExo );
+	        preparedStatement = initialisationRequetePreparee( connexion, DAOUtils.getProperties().getProperty(Constants.REQ_QR_BY_EXERCICE), false, idExo );
 	        resultSet = preparedStatement.executeQuery();
-	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        /* Parcours de la ligne de donnÃ©es de l'Ã©ventuel ResulSet retournÃ© */
 	        if ( resultSet.next() ) {
 	        	
 	        	    QrDAO qrDao=new QrDAOImpl(factoryDAO);
@@ -61,13 +61,13 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 	    ResultSet resultSet = null;
 	    List<Exercice> exercices = new ArrayList<Exercice>();
 	    try {
-	        /* Récupération d'une connexion depuis la Factory */
+	        /* RÃ©cupÃ©ration d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
 
 	        preparedStatement = initialisationRequetePreparee( connexion,DAOUtils.getProperties().getProperty(Constants.REQ_EXERCICE_PUBLIE), false);
 
 	        resultSet = preparedStatement.executeQuery();
-	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        /* Parcours de la ligne de donnÃ©es de l'Ã©ventuel ResulSet retournÃ© */
 	        if ( resultSet.next() ) {
 	        	exercices.add(mapExercice(resultSet));
 	        }
@@ -86,13 +86,13 @@ public class ExerciceDAOImpl implements ExerciceDAO{
 	    ResultSet resultSet = null;
 	    List<Exercice> Tests = new ArrayList<Exercice>();
 	    try {
-	        /* Récupération d'une connexion depuis la Factory */
+	        /* RÃ©cupÃ©ration d'une connexion depuis la Factory */
 	        connexion = factoryDAO.getConnection();
 
 	        preparedStatement = initialisationRequetePreparee( connexion, DAOUtils.getProperties().getProperty(Constants.REQ_TEST_PUBLIE), false);
 
 	        resultSet = preparedStatement.executeQuery();
-	        /* Parcours de la ligne de données de l'éventuel ResulSet retourné */
+	        /* Parcours de la ligne de donnÃ©es de l'Ã©ventuel ResulSet retournÃ© */
 	        if ( resultSet.next() ) {
 	        	Tests.add(mapExercice(resultSet));
 	        }
