@@ -1,5 +1,7 @@
 package edu.upc.fib.ossim.dao;
-
+/**
+ * @author soukaina
+ */
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +23,8 @@ public class FactoryDAO {
         this.password = password;
     }
     /*
-     * Méthode chargée de récupérer les informations de connexion à la base de
-     * données, charger le driver JDBC et retourner une instance 
+     * MÃ©thode chargÃ©e de rÃ©cupÃ©rer les informations de connexion Ã  la base de
+     * donnÃ©es, charger le driver JDBC et retourner une instance 
      */
     public static FactoryDAO getInstance() throws DAOConfigurationException {
         Properties properties = new Properties();
@@ -54,7 +56,7 @@ public class FactoryDAO {
         FactoryDAO instance = new FactoryDAO( url, nomUtilisateur, motDePasse );
         return instance;
     }
-    /* Méthode chargée de fournir une connexion à la base de données */
+    /* MÃ©thode chargÃ©e de fournir une connexion Ã  la base de donnÃ©es */
      /* package */ 
     Connection getConnection() throws SQLException {
         return DriverManager.getConnection( url, username, password );
